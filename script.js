@@ -57,27 +57,61 @@ function orderWeight(strng) {
 }
 
 */
-
+const o = {
+    'weight': 120,
+    'sumDigits': 3,
+    '3':120
+}
 const sampArr = "56 65 74 100 99 68 86 180 90" ;
+// const sampArr = "56 65 74" ;
 
 const objCreator = function(arr) {
 
     arr = arr.split(' ')
     // TODO 1 --> Create an array of objects from the string with keys: [[sumDigits], 'sumDigits','weight'] |Status: Complete|   
-    let obj = arr.map((weight) => {
+    let objArr = arr.map((weight) => {
         let sumDigits = String(weight).split('').reduce((runningTotal,currDigit) => runningTotal+Number(currDigit),0);
         return new Object({'weight':weight ,'sumDigits':sumDigits,[sumDigits]:weight})
     });
 
     // TODO 2 --> Each unique sumDigits to be a key, with the value being an array of weights sorted alphabetically --> As property of obj labeled sumDigitsSorted
+        // TODO 2a --> Create array of unique property values of SumDigits to be used as key |Status: Complete|
+    const sumDigitsValue = objArr.map((obj) => obj.sumDigits);
+    const uniqueSDV = [...new Set(sumDigitsValue)];
+        // TODO 2b --> Create an array of objects, each object has 1 property: sumDigits with an array for the value:: {sumDigits: [11,1,18...]}
+            const sameSum = {}
+            uniqueSDV.forEach((key) => {
+                sameSum[`${key}`] = [];
+                objArr.forEach(obj => {
+                    console.log(`${key}==${obj.sumDigits}`)
+                    if (key == obj.sumDigits) {
+                        sameSum[`${key}`].push(obj.weight);
+                    }
+
+                })
+            })
+            console.log(uniqueSDV);
+            console.log(sameSum);
+            // objArr.forEach(obj => {
+            //     // console.log(obj.sumDigits == uniqueSDV[0]);
+            //     uniqueSDV.forEach((key) => {
+            //         console.log(`${obj.sumDigits}==${key}`)
+            //         console.log(obj.sumDigits == key);
+                    
+            //     })
+            // })
+
+
+    // console.log(uniqueSDV)
     // TODO 3 --> Sort the keys in an array smallest to largest
-    // TODO 4 --> create an array of the values from each sumDigitsSorted --> flatten the array --> END
+    // TODO 4 --> create an array of the values from each sumDigitsSorted --> flatten the array --> ENDs
 
 
 };
 
 const obj =  objCreator(sampArr);
-console.log(obj)
+
+// console.log(obj)
 
 
 
