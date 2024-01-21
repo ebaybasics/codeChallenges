@@ -56,62 +56,58 @@ function orderWeight(strng) {
     // your code
 }
 
-*/
-const o = {
-    'weight': 120,
-    'sumDigits': 3,
-    '3':120
-}
-const sampArr = "56 65 74 100 99 68 86 180 90" ;
-// const sampArr = "56 65 74" ;
+// */
+// const sampArr = "2000 10003 1234000 44444444 9999 11 11 22 123" ;
+// // const sampArr = "56 65 74" ;
 
-const objCreator = function(arr) {
+// const orderWeight = function(strng) {
 
-    arr = arr.split(' ')
-    // TODO 1 --> Create an array of objects from the string with keys: [[sumDigits], 'sumDigits','weight'] |Status: Complete|   
-    let objArr = arr.map((weight) => {
-        let sumDigits = String(weight).split('').reduce((runningTotal,currDigit) => runningTotal+Number(currDigit),0);
-        return new Object({'weight':weight ,'sumDigits':sumDigits,[sumDigits]:weight})
-    });
+//     strng = strng.split(/\s+/)
+//     objArr = [];
+//     // TODO 1 --> Create an array of objects from the string with keys: [[sumDigits], 'sumDigits','weight'] |Status: Complete|   
+//     strng.map((weight) => {
+//         let sumDigits = String(weight).split('').reduce((runningTotal,currDigit) => runningTotal+Number(currDigit),0);
 
-    // TODO 2 --> Each unique sumDigits to be a key, with the value being an array of weights sorted alphabetically --> As property of obj labeled sumDigitsSorted
-        // TODO 2a --> Create array of unique property values of SumDigits to be used as key |Status: Complete|
-    const sumDigitsValue = objArr.map((obj) => obj.sumDigits);
-    const uniqueSDV = [...new Set(sumDigitsValue)];
-        // TODO 2b --> Create an array of objects, each object has 1 property: sumDigits with an array for the value:: {sumDigits: [11,1,18...]}
-            const sameSum = {}
-            uniqueSDV.forEach((key) => {
-                sameSum[`${key}`] = [];
-                objArr.forEach(obj => {
-                    console.log(`${key}==${obj.sumDigits}`)
-                    if (key == obj.sumDigits) {
-                        sameSum[`${key}`].push(obj.weight);
-                    }
+//         objArr.push(new Object({'weight':weight ,'sumDigits':sumDigits,[sumDigits]:weight}))
+//     });
+    
+//     let keys = [];
+//     objArr.forEach((obj) => {
+//         for (key in obj) {
+//             if(key == 'sumDigits') {
+//                 keys.push(obj.sumDigits);
+//             }
+//         }
 
-                })
-            })
-            console.log(uniqueSDV);
-            console.log(sameSum);
-            // objArr.forEach(obj => {
-            //     // console.log(obj.sumDigits == uniqueSDV[0]);
-            //     uniqueSDV.forEach((key) => {
-            //         console.log(`${obj.sumDigits}==${key}`)
-            //         console.log(obj.sumDigits == key);
-                    
-            //     })
-            // })
+//     });
 
+//     uniqKeys = [...new Set(keys)];
 
-    // console.log(uniqueSDV)
-    // TODO 3 --> Sort the keys in an array smallest to largest
-    // TODO 4 --> create an array of the values from each sumDigitsSorted --> flatten the array --> ENDs
+//     let keyValPairs = {};
+//     uniqKeys.forEach(uniqKey => {
+//         keyValPairs[uniqKey] = [];
+//         objArr.forEach(obj => {
+//             for (key in obj) {
+//                 if (key == uniqKey) {
+//                     keyValPairs[uniqKey].push(obj[key])
+//                 }
+//             }
+//         })
+//     })
 
+//     let finalArr = [];
+//     for (key in keyValPairs) {
+//         finalArr.push(keyValPairs[key])
+//     }
 
-};
+//     return finalArr.flat().join(' ');
 
-const obj =  objCreator(sampArr);
+// };
 
+// const obj =  orderWeight(sampArr);
 // console.log(obj)
+
+// // console.log(obj)
 
 
 
