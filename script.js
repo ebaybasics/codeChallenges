@@ -197,8 +197,8 @@ det(M) = a * det(a_minor) - b * det(b_minor) + c * det(c_minor) - d * det(d_mino
 
 
 ------------Strategy:-----------------
-1) Create a helper function to solve the case of the 2x2 and 1x1 Matirix. 
-2) We need recursion. For instance, if we have a 3x3 function we take:
+1) Create a helper function to solve the case of the 2x2 and 1x1 Matirix. const miniMatrixDet = function (twoBytwoMatix) {}
+2) Solve for the case of a 3x3 matrix:
     let (r,c) be row column pairs
 
     (r1,c1)*|(r2,c2),(r2,c3),(r3,c2),(r3,c3)|-(r1,c2)*|(r2,c1),(r2,c3)....
@@ -209,11 +209,27 @@ det(M) = a * det(a_minor) - b * det(b_minor) + c * det(c_minor) - d * det(d_mino
         If we have c, we multiply c by rows 2,3,4...n and columns of 1,2,4..n
         If we have d, we multiply d by rows 2,3,4...n and columns of 1,2,3..n
     **In the case where M is 3x3 which is the largest requirement the challenge puts on us we can take a1*det(a_2x2)-b1*det(b_2x2)+c1*(c_2x2)-d1*(d_2x2) which is equal to:
-            a1*(a2*d2-b2*c2)...Following the pattern of:    
+            a1*miniMatrixDet([[a2,b2], [c,d]])...Following the pattern of:    
                 A 2x2 matrix [ [a, b], [c, d] ] or
                 |a  b|
                 |c  d|
                 **** has determinant: a*d - b*c ****
 
+
+                ----->>>This challenge is made up of two problems: 
+                            Problem 1 is solving the 2x2 and 1x1 matrix.
+                            Problem 2 is choosing the elements of the row arrays from the 3x3 matrix [[a,b], [c,d]]
+
+
+                FOR ANY 3x3 MATRIX the DETERMINANT IS EQUAL TO:
+                |a0, b0, c0|
+                |a1, b1, c1|    ----> a0*[[b1,c1],[b2,c2]] - b0*[[a1,c1], [a2,c2]] + c0*[[a1,b1], [a2,b2]] where each sub matrix =
+                |a2, b2, c2|              b1*c2 - c1*b2 ----> (first element of array 1 multiplied by the second element of array2:)
+                                                              (minus second element of array 1 multiplied by the first element of array2) 
 */
 
+
+
+function determinant(m) {
+    // return the determinant of the matrix passed in
+  };
