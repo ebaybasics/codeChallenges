@@ -111,7 +111,7 @@ function orderWeight(strng) {
 
 
 // ----------------------------------------------------------------------------------------------------------------------------------//
-//---------------------------------||Next Challenge||--------------------------//
+//---------------------------------||Next Challenge - Complete||--------------------------//
 
 /*
 https://www.codewars.com/kata/526989a41034285187000de4/train/javascript
@@ -138,24 +138,82 @@ Strat 2:
                 -IPv4 has 4 octets in the form of d.c.b.a
 */
 // 4294967295
-const testIP = '255.255.255.255'
+// const testIP = '255.255.255.255'
 
-const ip1 = "20.0.0.10"
-const ip2 = "20.0.1.0"
+// const ip1 = "20.0.0.10"
+// const ip2 = "20.0.1.0"
 
-const ipRadixConverter = (ip) => {
-    let ipArr = ip.split('.');
-    let toPower = 4;
+// const ipRadixConverter = (ip) => {
+//     let ipArr = ip.split('.');
+//     let toPower = 4;
 
-    return ipArr.map((num) => {
-        toPower --;
-        return num*256**toPower;
-    }).reduce((acc, curr) => {
-        return acc+curr;
-    },0);  
-};
+//     return ipArr.map((num) => {
+//         toPower --;
+//         return num*256**toPower;
+//     }).reduce((acc, curr) => {
+//         return acc+curr;
+//     },0);  
+// };
 
-function ipsBetween(start, end){
-    return ipRadixConverter(end)-ipRadixConverter(start)
-  }
-console.log(ipsBetween(ip1,ip2));
+// function ipsBetween(start, end){
+//     return ipRadixConverter(end)-ipRadixConverter(start)
+//   }
+// console.log(ipsBetween(ip1,ip2));
+
+// ------------------------------------Challenge 3 ---------------------------------//
+/*
+
+https://www.codewars.com/kata/52a382ee44408cea2500074c/train/javascript
+
+Write a function that accepts a square matrix (N x N 2D array) and returns the determinant of the matrix.
+
+How to take the determinant of a matrix -- it is simplest to start with the smallest cases:
+
+A 1x1 matrix |a| has determinant a.
+
+A 2x2 matrix [ [a, b], [c, d] ] or
+
+|a  b|
+|c  d|
+has determinant: a*d - b*c.
+
+The determinant of an n x n sized matrix is calculated by reducing the problem to the calculation of the determinants of n matrices of n-1 x n-1 size.
+
+For the 3x3 case, [ [a, b, c], [d, e, f], [g, h, i] ] or
+
+|a b c|  
+|d e f|  
+|g h i|  
+the determinant is: a * det(a_minor) - b * det(b_minor) + c * det(c_minor) where det(a_minor) refers to taking the determinant of the 2x2 matrix created by crossing out the row and column in which the element a occurs:
+
+|- - -|
+|- e f|
+|- h i|  
+Note the alternation of signs.
+
+The determinant of larger matrices are calculated analogously, e.g. if M is a 4x4 matrix with first row [a, b, c, d], then:
+
+det(M) = a * det(a_minor) - b * det(b_minor) + c * det(c_minor) - d * det(d_minor)
+
+
+------------Strategy:-----------------
+1) Create a helper function to solve the case of the 2x2 and 1x1 Matirix. 
+2) We need recursion. For instance, if we have a 3x3 function we take:
+    let (r,c) be row column pairs
+
+    (r1,c1)*|(r2,c2),(r2,c3),(r3,c2),(r3,c3)|-(r1,c2)*|(r2,c1),(r2,c3)....
+
+    *This means that we always select the 1st row array as coefficents: [a,b,c,d] where the indexes represent the columns (let first index = 1 for simplicity)
+        If we have a, we multiply a by rows 2,3,4...n and columns of 2,3,4..n
+        If we have b, we multiply b by rows 2,3,4...n and columns of 1,3,4..n
+        If we have c, we multiply c by rows 2,3,4...n and columns of 1,2,4..n
+        If we have d, we multiply d by rows 2,3,4...n and columns of 1,2,3..n
+    **In the case where M is 3x3 which is the largest requirement the challenge puts on us we can take a1*det(a_2x2)-b1*det(b_2x2)+c1*(c_2x2)-d1*(d_2x2) which is equal to:
+            a1*(a2*d2-b2*c2)...Following the pattern of:    
+                A 2x2 matrix [ [a, b], [c, d] ] or
+                |a  b|
+                |c  d|
+                **** has determinant: a*d - b*c ****
+
+*/
+
