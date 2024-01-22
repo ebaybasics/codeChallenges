@@ -102,7 +102,7 @@ function orderWeight(strng) {
 
 //     return finalArr.flat().join(' ');
 
-// };
+// }
 
 // const obj =  orderWeight(sampArr);
 // console.log(obj)
@@ -110,4 +110,52 @@ function orderWeight(strng) {
 // // console.log(obj)
 
 
+// ----------------------------------------------------------------------------------------------------------------------------------//
+//---------------------------------||Next Challenge||--------------------------//
 
+/*
+https://www.codewars.com/kata/526989a41034285187000de4/train/javascript
+
+Implement a function that receives two IPv4 addresses, and returns the number of addresses between them (including the first one, excluding the last one).
+
+All inputs will be valid IPv4 addresses in the form of strings. The last address will always be greater than the first one.
+
+Examples
+* With input "10.0.0.0", "10.0.0.50"  => return   50 
+* With input "10.0.0.0", "10.0.1.0"   => return  256 
+* With input "20.0.0.10", "20.0.1.0"  => return  246
+
+
+function ipsBetween(start, end){
+  //TODO
+}
+Strat 1:
+TODO: Build helper function that determines 256 mod SOME_NUMBER and quotient as some datatype : Likely an *object or array
+
+Strat 2: 
+ Option 1: Question: Can you take the whole number b-a to find the number between them by first converting the number to a base ten number
+ Option 2: Can you take each number and subtract them by current base.
+                -IPv4 has 4 octets in the form of d.c.b.a
+*/
+// 4294967295
+const testIP = '255.255.255.255'
+
+const ip1 = "20.0.0.10"
+const ip2 = "20.0.1.0"
+
+const ipRadixConverter = (ip) => {
+    let ipArr = ip.split('.');
+    let toPower = 4;
+
+    return ipArr.map((num) => {
+        toPower --;
+        return num*256**toPower;
+    }).reduce((acc, curr) => {
+        return acc+curr;
+    },0);  
+};
+
+function ipsBetween(start, end){
+    return ipRadixConverter(end)-ipRadixConverter(start)
+  }
+console.log(ipsBetween(ip1,ip2));
