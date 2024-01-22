@@ -217,7 +217,7 @@ det(M) = a * det(a_minor) - b * det(b_minor) + c * det(c_minor) - d * det(d_mino
 
 
                 ----->>>This challenge is made up of two problems: 
-                            Problem 1 is solving the 2x2 and 1x1 matrix.
+                            Problem 1 is solving the 2x2 and 1x1 matrix. |STATUS: COMPLETE|
                             Problem 2 is choosing the elements of the row arrays from the 3x3 matrix [[a,b], [c,d]]
 
 
@@ -230,6 +230,21 @@ det(M) = a * det(a_minor) - b * det(b_minor) + c * det(c_minor) - d * det(d_mino
 
 
 
+const  m5 = [[2,4,2],[3,1,1],[1,2,0]];
+
+const matrixRed = (arrRows) => {
+
+}
+const  m1 = [ [4, 6], [3,8]];
+
+
 function determinant(m) {
-    // return the determinant of the matrix passed in
-  };
+    const smMatrixDet = (arrRows) =>(arrRows[0][0]*arrRows[1][1]) - (arrRows[0][1]*arrRows[1][0]);
+    console.log(m[0])
+    if (m.length == 1) return m[0][0];
+    if (m[0].length == 2) return smMatrixDet(m);
+    // return the determinant of the 3x3 matrix passed in
+    if (m[0].length == 3) return m[0][0]*smMatrixDet([[m[1][1],m[1][2]],[m[2][1],m[2][2]]]) - m[0][1]*smMatrixDet([[m[1][0],m[1][2]],[m[2][0],m[2][2]]]) + m[0][2]*smMatrixDet([[m[1][0],m[1][1]],[m[2][0],m[2][1]]]);
+};
+
+console.log(determinant(m1))
